@@ -88,6 +88,13 @@ func handleAPIRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	err = helmApply("helm-multiple-branch/", payload.SvcCode, payload.Tag, payload.Env)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		fmt.Fprint(w, "Failed to perform git add, commit, and push")
+		return
+	}
+
 	// fmt.Println("Running command")
 	// dir = "./helm-multiple-branch"
 	// cmd = exec.Command("git", "pull")
@@ -140,5 +147,14 @@ func gitAddCommitPush(dir string, svcCode string, tag string, env string) error 
 		return err
 	}
 
+	return nil
+}
+
+func helmApply(filePath string, svcCode string, tag string, env string) error {
+	updateYAMLValueCmd := exec.Command("helm", "upgrade", "app", ".")
+	err := updateYAMLValueCmd.Run()
+	if err != nil {
+		return err
+	}
 	return nil
 }
