@@ -2,7 +2,7 @@ replicaCount: 5
 
 image:
   name: nginx
-  tag: stable-alpine-perl
+  tag: latest
   repository: nginx
   pullpolicy: "Always"
 
