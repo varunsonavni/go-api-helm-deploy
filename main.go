@@ -150,8 +150,9 @@ func gitAddCommitPush(dir string, svcCode string, tag string, env string) error 
 	return nil
 }
 
-func helmApply(filePath string, svcCode string, tag string, env string) error {
+func helmApply(dir string, svcCode string, tag string, env string) error {
 	updateYAMLValueCmd := exec.Command("helm", "upgrade", "app", ".")
+	updateYAMLValueCmd.Dir = dir
 	err := updateYAMLValueCmd.Run()
 	if err != nil {
 		return err
