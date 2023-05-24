@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-configmap
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Chart.Name }}          
+    tier: backend
+data:
+  {{- range $key, $value := .Values.cf_values }}
+  {{ $key }}: {{ tpl ($value | toString | quote) $ }}
+  {{- end }}

@@ -1,0 +1,23 @@
+replicaCount: 2
+
+image:
+  name: jenkins
+  repository: jenkins/jenkins
+  pullpolicy: "Always"
+
+selector:
+  key: jenkins
+  value: jenkins
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+secret_values:
+  PASSWORD: "fdfs1111bfdf26fe5b1f14a7fb4dd4f8bd3bda2500f08bffa6c980bbac52"
+
+cf_values:
+  NODE_ENV: "pord"
+  PORT: 4000
+

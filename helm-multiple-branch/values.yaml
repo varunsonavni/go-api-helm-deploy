@@ -1,0 +1,25 @@
+replicaCount: 2
+
+image:
+  name: nginx
+  tag: stable-alpine3.17-slim
+  repository: nginx
+  pullpolicy: "Always"
+
+selector:
+  key: app
+  value: paymish-coral-pay-dev
+
+service:
+  type: ClusterIP
+  port: 8080
+  targetPort: 80
+
+secret_values:
+  CORALPAY_API_PASSWORD: "cd80670673372851f166743439b52b8bfdf26fe5b1f14a7fb4dd4f8bd3bda2500f08bffa6c980bbac52"
+  API: "HElLO"
+  NAME: "VARUN"
+cf_values:
+  NODE_ENV: "development"
+  PORT: 4000
+
