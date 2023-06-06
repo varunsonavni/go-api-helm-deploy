@@ -93,7 +93,7 @@ func handleAPIRequest(w http.ResponseWriter, r *http.Request) {
 	err = helmApply("helm-multiple-branch/", payload.SvcCode, payload.Tag, payload.Env)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		zap.S().Warnw("Failed to perform git add, commit, and push", "err", err)
+		zap.S().Errorw("Failed to perform helm apply", "err", err)
 		fmt.Fprint(w, "Failed to apply helm")
 		return
 	}
