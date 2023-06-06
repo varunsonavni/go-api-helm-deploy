@@ -94,7 +94,7 @@ func handleAPIRequest(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		zap.S().Errorw("Failed to perform helm apply", "err", err)
-		log.Println(err.Error())
+		log.Println(err)
 		fmt.Fprint(w, "Failed to apply helm")
 		return
 	}
