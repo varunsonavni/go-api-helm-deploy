@@ -55,7 +55,7 @@ func handleAPIRequest(w http.ResponseWriter, r *http.Request) {
 
 	// var env = string(payload.Env)
 
-	// 		GIT PULL ###############################
+	// 		GIT PULL ##################################
 
 	fmt.Println("Running command")
 	dir := "helm-multiple-branch/"
@@ -85,6 +85,7 @@ func handleAPIRequest(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		fmt.Fprint(w, "Failed to perform git add, commit, and push")
+		// zap.S().Warnw("Failed to perform git add, commit, and push", "err", err)
 		return
 	}
 
