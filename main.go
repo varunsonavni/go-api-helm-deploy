@@ -8,6 +8,7 @@ import (
 	"os/exec"
 
 	"github.com/go-playground/validator/v10"
+	"go.uber.org/zap"
 )
 
 type Payload struct {
@@ -85,7 +86,7 @@ func handleAPIRequest(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		fmt.Fprint(w, "Failed to perform git add, commit, and push")
-		// zap.S().Warnw("Failed to perform git add, commit, and push", "err", err)
+		zap.S().Warnw("Failed to perform git add, commit, and push", "err", err)
 		return
 	}
 
