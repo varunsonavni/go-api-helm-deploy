@@ -2,7 +2,7 @@ replicaCount: 2
 
 image:
   name: nginx
-  tag: latest
+  tag: mainline
   repository: nginx
   pullpolicy: "Always"
 

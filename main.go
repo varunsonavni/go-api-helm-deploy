@@ -93,6 +93,7 @@ func handleAPIRequest(w http.ResponseWriter, r *http.Request) {
 	err = helmApply("helm-multiple-branch/", payload.SvcCode, payload.Tag, payload.Env)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
+		zap.S().Warnw("Failed to apply helm zap", err)
 		fmt.Fprint(w, "Failed to apply helm")
 		return
 	}
